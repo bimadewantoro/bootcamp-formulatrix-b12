@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bimadewantoro\\project\\day-1\\hello-world\\hello-world.csproj",
+      "projectUniqueName": "C:\\Users\\bimadewantoro\\project\\bootcamp-formulatrix\\hello-world\\hello-world.csproj",
       "projectName": "hello-world",
-      "projectPath": "C:\\Users\\bimadewantoro\\project\\day-1\\hello-world\\hello-world.csproj",
+      "projectPath": "C:\\Users\\bimadewantoro\\project\\bootcamp-formulatrix\\hello-world\\hello-world.csproj",
       "packagesPath": "C:\\Users\\bimadewantoro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bimadewantoro\\project\\day-1\\hello-world\\obj\\",
+      "outputPath": "C:\\Users\\bimadewantoro\\project\\bootcamp-formulatrix\\hello-world\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\bimadewantoro\\AppData\\Roaming\\NuGet\\NuGet.Config"
