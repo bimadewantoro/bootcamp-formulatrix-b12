@@ -1,5 +1,6 @@
 using DotnetApiPostgres.Api;
 using Microsoft.EntityFrameworkCore;
+using DotnetApiPostgres.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,8 @@ string connectionString = builder.Configuration.GetConnectionString("default");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
+
+builder.Services.AddTransient<IPersonService, PersonService>();
 
 var app = builder.Build();
 
