@@ -37,8 +37,8 @@ static string GetConnectionString()
     var host = Environment.GetEnvironmentVariable("DB_HOST") ?? "localhost";
     var port = Environment.GetEnvironmentVariable("DB_PORT") ?? "5432";
     var database = Environment.GetEnvironmentVariable("DB_NAME") ?? "dotnet-api";
-    var username = Environment.GetEnvironmentVariable("DB_USER") ?? "dotnet-api";
-    var password = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "135246";
+    var username = Environment.GetEnvironmentVariable("DB_USER") ?? "";
+    var password = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "";
 
     return $"Host={host};Port={port};Database={database};Username={username};Password={password}";
 }
