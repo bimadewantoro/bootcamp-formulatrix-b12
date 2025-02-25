@@ -27,5 +27,6 @@
     <Content Include="Models\DTOS\UpdatePersonDTO.cs" />
     <Content Include="Models\DTOS\CreatePersonDTO.cs" />
     <Content Include="Services\PersonService.cs" />
+    <Content Include="Controllers\PeopleController.cs" />
   </ItemGroup>
 </Project>
