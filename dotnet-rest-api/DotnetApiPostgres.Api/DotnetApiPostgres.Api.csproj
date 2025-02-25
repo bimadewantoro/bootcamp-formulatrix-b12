@@ -23,5 +23,8 @@
     <Content Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
     <Content Include="Migrations\20250225043346_init.Designer.cs" />
     <Content Include="Migrations\20250225043346_init.cs" />
+    <Content Include="Models\DTOS\GetPersonDto.cs" />
+    <Content Include="Models\DTOS\UpdatePersonDTO.cs" />
+    <Content Include="Models\DTOS\CreatePersonDTO.cs" />
   </ItemGroup>
 </Project>
