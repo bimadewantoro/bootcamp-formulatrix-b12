@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DotnetApiPostgres.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72ba36441f331f3255a5f8866f0acf8de6f04f5c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+588f512a636af8bbc4c808dae99dd2c8f50a1603")]
 [assembly: System.Reflection.AssemblyProductAttribute("DotnetApiPostgres.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DotnetApiPostgres.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
