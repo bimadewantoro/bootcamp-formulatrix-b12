@@ -1,11 +1,19 @@
+using DotnetApiPostgres.Api;
+using Microsoft.EntityFrameworkCore;
+using DotnetApiPostgres.Api.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+string connectionString = builder.Configuration.GetConnectionString("default");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(connectionString));
+
+builder.Services.AddTransient<IPersonService, PersonService>();
 
 var app = builder.Build();
 
@@ -17,8 +25,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
 
 app.MapControllers();
 
