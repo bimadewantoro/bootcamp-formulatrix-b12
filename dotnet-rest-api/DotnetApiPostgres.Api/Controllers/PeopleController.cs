@@ -46,7 +46,7 @@ public class PeopleController : ControllerBase
                 return NotFound();
             }
             await _personService.UpdatePersonAsync(personToUpdate);
-            return NoContent();
+            return Ok(person);
         }
         catch (Exception ex)
         {
@@ -100,7 +100,7 @@ public class PeopleController : ControllerBase
                 return NotFound();
             }
             await _personService.DeletePersonAsync(GetPersonDto.ToPerson(person));
-            return NoContent();
+            return Ok(string.Format("Person with id {0} has been deleted", id));
         }
         catch (Exception ex)
         {
