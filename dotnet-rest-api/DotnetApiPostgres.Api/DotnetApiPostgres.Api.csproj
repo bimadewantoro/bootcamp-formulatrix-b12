@@ -18,7 +18,6 @@
     <Content Include="Models\ApplicationDbContext.cs" />
     <Content Include="appsettings.Development.json" />
     <Content Include="appsettings.json" />
-    <Content Include="WeatherForecast.cs" />
     <Content Include="Program.cs" />
     <Content Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
     <Content Include="Migrations\20250225043346_init.Designer.cs" />
