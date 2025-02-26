@@ -18,17 +18,8 @@ public class HomeController : Controller
         return View();
     }
 
+    [Route("privacy")]
     public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    public IActionResult ContactUs()
-    {
-        return View();
-    }
-
-    public IActionResult Services()
     {
         return View();
     }
