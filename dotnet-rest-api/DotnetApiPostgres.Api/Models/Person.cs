@@ -15,12 +15,22 @@ public class Person
     [Required]
     public required string Name { get; set; }
 
+    [Required]
+    [Range(0, 150)]
+    public int Age { get; set; }
+
+    [Required]
+    [Column(TypeName = "varchar(10)")]
+    public Gender Gender { get; set; }
+
     public static GetPersonDto ToGetPersonDto(Person person)
     {
         return new GetPersonDto
         {
             Id = person.Id,
-            Name = person.Name
+            Name = person.Name,
+            Age = person.Age,
+            Gender = person.Gender
         };
     }
 }
