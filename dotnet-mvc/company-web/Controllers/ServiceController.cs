@@ -4,22 +4,17 @@ using company_web.Models;
 
 namespace company_web.Controllers;
 
-public class HomeController : Controller
+public class ServiceController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<ServiceController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public ServiceController(ILogger<ServiceController> logger)
     {
         _logger = logger;
     }
 
+    [Route("services", Name = "Services")]
     public IActionResult Index()
-    {
-        return View();
-    }
-
-    [Route("privacy")]
-    public IActionResult Privacy()
     {
         return View();
     }
