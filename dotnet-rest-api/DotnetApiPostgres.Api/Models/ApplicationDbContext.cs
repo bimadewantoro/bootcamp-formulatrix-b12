@@ -11,4 +11,11 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<Person> People { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Person>()
+            .Property(p => p.Gender)
+            .HasConversion<string>();
+    }
 }
