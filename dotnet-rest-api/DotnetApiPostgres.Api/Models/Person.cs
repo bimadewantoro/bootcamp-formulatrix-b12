@@ -20,6 +20,7 @@ public class Person
     public int Age { get; set; }
 
     [Required]
+    [Column(TypeName = "varchar(10)")]
     public Gender Gender { get; set; }
 
     public static GetPersonDto ToGetPersonDto(Person person)
