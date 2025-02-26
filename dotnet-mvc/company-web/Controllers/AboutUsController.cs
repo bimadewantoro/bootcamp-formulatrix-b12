@@ -4,31 +4,17 @@ using company_web.Models;
 
 namespace company_web.Controllers;
 
-public class HomeController : Controller
+public class AboutUsController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<AboutUsController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public AboutUsController(ILogger<AboutUsController> logger)
     {
         _logger = logger;
     }
 
+    [Route("about-us", Name = "AboutUs")]
     public IActionResult Index()
-    {
-        return View();
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    public IActionResult ContactUs()
-    {
-        return View();
-    }
-
-    public IActionResult Services()
     {
         return View();
     }
