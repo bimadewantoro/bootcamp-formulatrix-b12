@@ -9,12 +9,18 @@ public class UpdatePersonDTO
     [Required]
     public required string Name { get; set; }
 
+    public int Age { get; set; }
+
+    public Gender Gender { get; set; }
+
     public static Person ToPerson(UpdatePersonDTO updatePersonDto)
     {
         return new Person
         {
             Id = updatePersonDto.Id,
-            Name = updatePersonDto.Name
+            Name = updatePersonDto.Name,
+            Age = updatePersonDto.Age,
+            Gender = updatePersonDto.Gender
         };
     }
 }
