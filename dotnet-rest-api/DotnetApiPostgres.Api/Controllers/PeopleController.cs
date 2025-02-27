@@ -100,7 +100,7 @@ public class PeopleController : ControllerBase
                 return NotFound();
             }
             await _personService.DeletePersonAsync(GetPersonDto.ToPerson(person));
-            return Ok(string.Format("Person with id {0} has been deleted", id));
+            return Ok(string.Format("Person has been deleted.", id));
         }
         catch (Exception ex)
         {
