@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hello-world", "hello-world\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logic-exercise", "logic-exercise\logic-exercise.csproj", "{B840E157-A46E-48C9-916D-B2E762255132}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "learn-csharp", "learn-csharp\learn-csharp.csproj", "{417D86A9-F852-4281-9626-718623E343CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{B840E157-A46E-48C9-916D-B2E762255132}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B840E157-A46E-48C9-916D-B2E762255132}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B840E157-A46E-48C9-916D-B2E762255132}.Release|Any CPU.Build.0 = Release|Any CPU
+		{417D86A9-F852-4281-9626-718623E343CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{417D86A9-F852-4281-9626-718623E343CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{417D86A9-F852-4281-9626-718623E343CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{417D86A9-F852-4281-9626-718623E343CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
