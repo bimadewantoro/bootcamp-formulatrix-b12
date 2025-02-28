@@ -1,6 +1,7 @@
 ﻿using Advanced.ArrayOfDelegates;
 using Advanced.Delegates;
 using Advanced.EventManager;
+using Advanced.MultipleEvenHandler;
 using CreatingTypes.Classes;
 
 namespace LearnCSharp
@@ -40,6 +41,9 @@ namespace LearnCSharp
                     break;
                 case "events":
                     EventManager.Run();
+                    break;
+                case "multiple-events":
+                    MultipleEventHandler.Run();
                     break;
                 default:
                     Console.WriteLine("Unknown topic.");
