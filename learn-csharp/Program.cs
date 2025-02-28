@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Advanced.ArrayOfDelegates;
+using Advanced.Delegates;
+using CreatingTypes.Classes;
 
 namespace LearnCSharp
 {
@@ -19,6 +21,21 @@ namespace LearnCSharp
                     break;
                 case "syntax":
                     Syntax.Run();
+                    break;
+                case "types":
+                    TypeBasics.Run();
+                    break;
+                case "numeric":
+                    NumericTypes.Run();
+                    break;
+                case "classes":
+                    Classes.Run();
+                    break;
+                case "delegates":
+                    Delegates.Run();
+                    break;
+                case "arrays-of-delegates":
+                    ArrayOfDelegates.Run();
                     break;
                 default:
                     Console.WriteLine("Unknown topic.");
