@@ -2,12 +2,173 @@
     ViewData["Title"] = "Services";
 }
 
-<h2>@ViewData["Title"]</h2>
-<p>Welcome to our Services page. Here are the services we offer:</p>
+<section class="py-5 text-center">
+    <div class="container">
+        <div class="row py-lg-3"></div>
+        <div class="row py-lg-3">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <h1 class="fw-bold display-4">Our Services</h1>
+                <p class="lead text-muted mb-4">Explore our comprehensive range of professional services</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-<ul>
-    <li>Service 1: Description of service 1.</li>
-    <li>Service 2: Description of service 2.</li>
-    <li>Service 3: Description of service 3.</li>
-    <li>Service 4: Description of service 4.</li>
-</ul>
+<section class="py-5">
+    <div class="container">
+        <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- First slide with 3 cards -->
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <div class="text-center mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                                            fill="currentColor" class="bi bi-gear-fill text-primary"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+                                        </svg>
+                                    </div>
+                                    <h4 class="card-title text-center">Service 1</h4>
+                                    <p class="card-text">Description of service 1. This service provides comprehensive
+                                        solutions for your business needs.</p>
+                                    <div class="text-center mt-3">
+                                        <a href="#" class="btn btn-outline-primary">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <div class="text-center mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                                            fill="currentColor" class="bi bi-bar-chart-fill text-primary"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z" />
+                                        </svg>
+                                    </div>
+                                    <h4 class="card-title text-center">Service 2</h4>
+                                    <p class="card-text">Description of service 2. We offer professional guidance and
+                                        expertise for optimal results.</p>
+                                    <div class="text-center mt-3">
+                                        <a href="#" class="btn btn-outline-primary">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <div class="text-center mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                                            fill="currentColor" class="bi bi-lightning-fill text-primary"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
+                                        </svg>
+                                    </div>
+                                    <h4 class="card-title text-center">Service 3</h4>
+                                    <p class="card-text">Description of service 3. Our innovative approach ensures
+                                        quality and efficiency in every project.</p>
+                                    <div class="text-center mt-3">
+                                        <a href="#" class="btn btn-outline-primary">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Second slide with 3 cards -->
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <div class="text-center mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                                            fill="currentColor" class="bi bi-cloud-fill text-primary"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z" />
+                                        </svg>
+                                    </div>
+                                    <h4 class="card-title text-center">Service 4</h4>
+                                    <p class="card-text">Description of service 4. We provide custom solutions tailored
+                                        to meet your specific requirements.</p>
+                                    <div class="text-center mt-3">
+                                        <a href="#" class="btn btn-outline-primary">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <div class="text-center mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                                            fill="currentColor" class="bi bi-shield-fill-check text-primary"
+                                            viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm2.146 5.146a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647z" />
+                                        </svg>
+                                    </div>
+                                    <h4 class="card-title text-center">Service 5</h4>
+                                    <p class="card-text">Description of service 5. Our expert team delivers reliable and
+                                        high-quality results every time.</p>
+                                    <div class="text-center mt-3">
+                                        <a href="#" class="btn btn-outline-primary">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <div class="text-center mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                                            fill="currentColor" class="bi bi-chat-square-text-fill text-primary"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.5a1 1 0 0 0-.8.4l-1.9 2.533a1 1 0 0 1-1.6 0L5.3 12.4a1 1 0 0 0-.8-.4H2a2 2 0 0 1-2-2V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
+                                        </svg>
+                                    </div>
+                                    <h4 class="card-title text-center">Service 6</h4>
+                                    <p class="card-text">Description of service 6. We're committed to helping you
+                                        achieve your business goals with our specialized services.</p>
+                                    <div class="text-center mt-3">
+                                        <a href="#" class="btn btn-outline-primary">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Indicators -->
+            <div class="carousel-indicators position-relative mt-4">
+                <button type="button" data-bs-target="#serviceCarousel" data-bs-slide-to="0" class="active bg-dark"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#serviceCarousel" data-bs-slide-to="1" class="bg-dark"
+                    aria-label="Slide 2"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Initialize the carousel with auto-play
+            var serviceCarousel = new bootstrap.Carousel(document.getElementById('serviceCarousel'), {
+                interval: 5000, // Change slides every 5 seconds
+                wrap: true
+            });
+        });
+    </script>
+}
