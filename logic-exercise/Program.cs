@@ -1,19 +1,24 @@
-﻿int n = 15;
+﻿int n = 105;
 for (int i = 1; i <= n; i++)
 {
-    if (i % 3 == 0 && i % 5 == 0)
-    {
-        Console.Write("foobar");
-    }
-    else if (i % 3 == 0)
+    bool printed = false;
+
+    if (i % 3 == 0)
     {
         Console.Write("foo");
+        printed = true;
     }
-    else if (i % 5 == 0)
+    if (i % 5 == 0)
     {
         Console.Write("bar");
+        printed = true;
     }
-    else
+    if (i % 7 == 0)
+    {
+        Console.Write("jazz");
+        printed = true;
+    }
+    if (!printed)
     {
         Console.Write(i);
     }
