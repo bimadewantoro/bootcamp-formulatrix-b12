@@ -65,7 +65,7 @@ namespace Advanced.SpeedWarning
                 }
                 else
                 {
-                    Console.WriteLine($"{car.Model} is traveling at {e.CurrentSpeed} mph");
+                    Console.WriteLine($"{car.Model} is traveling at {e.CurrentSpeed} km/h");
                 }
             }
         }
