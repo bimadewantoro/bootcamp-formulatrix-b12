@@ -15,7 +15,7 @@ namespace Advanced.MultipleEvenHandler
 
     public class Publisher
     {
-        public event MyEventHandler MyEvent;
+        public event MyEventHandler? MyEvent;
 
         public void DoSomething()
         {

@@ -8,6 +8,7 @@ using Advanced.MultipleException;
 using Advanced.FilteringException;
 using Advanced.FireAlarm;
 using Advanced.EmployeePromotion;
+using Advanced.SpeedWarning;
 using CreatingTypes.Classes;
 using CreatingTypes.Inheritance;
 using CreatingTypes.Interfaces;
@@ -70,6 +71,9 @@ namespace LearnCSharp
                     break;
                 case "observer":
                     ObserverDesignPattern.Run();
+                    break;
+                case "speed-warning":
+                    SpeedWarning.Run();
                     break;
                 case "exception":
                     SimpleException.Run();

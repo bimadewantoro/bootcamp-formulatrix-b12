@@ -15,7 +15,7 @@ namespace Advanced.EventManager
 
     public class Publisher
     {
-        public event EventHandler MyEvent;
+        public event EventHandler? MyEvent;
 
         public void DoSomething()
         {
@@ -26,7 +26,7 @@ namespace Advanced.EventManager
 
     public class Subscriber
     {
-        public void OnEvent(object sender, EventArgs e)
+        public void OnEvent(object? sender, EventArgs e)
         {
             Console.WriteLine("Subscriber: I'm reacting to the event.");
         }
