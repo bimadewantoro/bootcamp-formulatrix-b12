@@ -6,6 +6,7 @@ using Advanced.ObserverDesignPattern;
 using Advanced.SimpleException;
 using Advanced.MultipleException;
 using Advanced.FilteringException;
+using Advanced.FireAlarm;
 using CreatingTypes.Classes;
 using CreatingTypes.Inheritance;
 using CreatingTypes.Interfaces;
@@ -53,6 +54,9 @@ namespace LearnCSharp
                     break;
                 case "arrays-of-delegates":
                     ArrayOfDelegates.Run();
+                    break;
+                case "fire-alarm":
+                    FireAlarm.Run();
                     break;
                 case "events":
                     EventManager.Run();
