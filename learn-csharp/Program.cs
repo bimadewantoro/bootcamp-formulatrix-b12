@@ -4,6 +4,7 @@ using Advanced.EventManager;
 using Advanced.MultipleEvenHandler;
 using Advanced.ObserverDesignPattern;
 using Advanced.SimpleException;
+using Advanced.MultipleException;
 using CreatingTypes.Classes;
 
 namespace LearnCSharp
@@ -52,6 +53,9 @@ namespace LearnCSharp
                     break;
                 case "exception":
                     SimpleException.Run();
+                    break;
+                case "multiple-exception":
+                    MultipleException.Run();
                     break;
                 default:
                     Console.WriteLine("Unknown topic.");
