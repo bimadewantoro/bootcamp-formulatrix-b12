@@ -7,6 +7,7 @@ using Advanced.SimpleException;
 using Advanced.MultipleException;
 using Advanced.FilteringException;
 using CreatingTypes.Classes;
+using CreatingTypes.Inheritance;
 
 namespace LearnCSharp
 {
@@ -25,6 +26,7 @@ namespace LearnCSharp
                 case "hello":
                     HelloWorld.Run();
                     break;
+                // Basic topics
                 case "syntax":
                     Syntax.Run();
                     break;
@@ -34,9 +36,14 @@ namespace LearnCSharp
                 case "numeric":
                     NumericTypes.Run();
                     break;
+                // Creating types
                 case "classes":
                     Classes.Run();
                     break;
+                case "inheritance":
+                    Inheritance.Run();
+                    break;
+                // Advanced topics
                 case "delegates":
                     Delegates.Run();
                     break;
