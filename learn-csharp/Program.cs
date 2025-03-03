@@ -8,6 +8,7 @@ using Advanced.MultipleException;
 using Advanced.FilteringException;
 using CreatingTypes.Classes;
 using CreatingTypes.Inheritance;
+using CreatingTypes.Interfaces;
 
 namespace LearnCSharp
 {
@@ -42,6 +43,9 @@ namespace LearnCSharp
                     break;
                 case "inheritance":
                     Inheritance.Run();
+                    break;
+                case "interfaces":
+                    Interface.Run();
                     break;
                 // Advanced topics
                 case "delegates":
