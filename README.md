@@ -14,7 +14,7 @@ A console application that demonstrates the following C# concepts and features.
 
 ### 3. logic-exercise
 
-A console application that implements the classic "FizzBuzz" programming challenge. The program prints numbers from 1 to 15, replacing multiples of 3 with "foo", multiples of 5 with "bar", and multiples of both with "foobar".
+A console application that implements the classic "FizzBuzz" programming challenge.
 
 ### 4. dotnet-rest-api
 
