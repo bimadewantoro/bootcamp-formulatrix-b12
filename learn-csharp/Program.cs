@@ -3,6 +3,7 @@ using Advanced.Delegates;
 using Advanced.EventManager;
 using Advanced.MultipleEvenHandler;
 using Advanced.ObserverDesignPattern;
+using Advanced.SimpleException;
 using CreatingTypes.Classes;
 
 namespace LearnCSharp
@@ -48,6 +49,9 @@ namespace LearnCSharp
                     break;
                 case "observer":
                     ObserverDesignPattern.Run();
+                    break;
+                case "exception":
+                    SimpleException.Run();
                     break;
                 default:
                     Console.WriteLine("Unknown topic.");
