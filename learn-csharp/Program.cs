@@ -7,6 +7,7 @@ using Advanced.SimpleException;
 using Advanced.MultipleException;
 using Advanced.FilteringException;
 using Advanced.FireAlarm;
+using Advanced.EmployeePromotion;
 using CreatingTypes.Classes;
 using CreatingTypes.Inheritance;
 using CreatingTypes.Interfaces;
@@ -57,6 +58,9 @@ namespace LearnCSharp
                     break;
                 case "fire-alarm":
                     FireAlarm.Run();
+                    break;
+                case "employee-promotion":
+                    EmployeePromotion.Run();
                     break;
                 case "events":
                     EventManager.Run();
