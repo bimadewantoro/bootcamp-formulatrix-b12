@@ -5,6 +5,7 @@ using Advanced.MultipleEvenHandler;
 using Advanced.ObserverDesignPattern;
 using Advanced.SimpleException;
 using Advanced.MultipleException;
+using Advanced.FilteringException;
 using CreatingTypes.Classes;
 
 namespace LearnCSharp
@@ -56,6 +57,9 @@ namespace LearnCSharp
                     break;
                 case "multiple-exception":
                     MultipleException.Run();
+                    break;
+                case "filtering-exception":
+                    FilteringException.Run();
                     break;
                 default:
                     Console.WriteLine("Unknown topic.");
