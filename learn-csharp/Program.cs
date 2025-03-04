@@ -17,6 +17,7 @@ using FrameworkFundamental.DateTimes;
 using FrameworkFundamental.FormatingParsing;
 using FrameworkFundamental.ConversionMechanisms;
 using FrameworkFundamental.Numbers;
+using FrameworkFundamental.Enums;
 
 namespace LearnCSharp
 {
@@ -104,6 +105,9 @@ namespace LearnCSharp
                     break;
                 case "numbers":
                     Numbers.Run();
+                    break;
+                case "enums":
+                    Enums.Run();
                     break;
                 default:
                     Console.WriteLine("Unknown topic.");
