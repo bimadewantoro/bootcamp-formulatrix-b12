@@ -13,6 +13,7 @@ using CreatingTypes.Classes;
 using CreatingTypes.Inheritance;
 using CreatingTypes.Interfaces;
 using FrameworkFundamental.StringText;
+using FrameworkFundamental.DateTimes;
 
 namespace LearnCSharp
 {
@@ -88,6 +89,9 @@ namespace LearnCSharp
                 // Framework fundamentals
                 case "string":
                     StringText.Run();
+                    break;
+                case "datetime":
+                    DateTimes.Run();
                     break;
                 default:
                     Console.WriteLine("Unknown topic.");
