@@ -20,6 +20,7 @@ using FrameworkFundamental.Numbers;
 using FrameworkFundamental.Enums;
 using FrameworkFundamental.EqualityComparison;
 using Collections.Enumeration;
+using Collections.ArrayClass;
 
 namespace LearnCSharp
 {
@@ -116,6 +117,9 @@ namespace LearnCSharp
                     break;
                 case "enumeration":
                     Enumeration.Run();
+                    break;
+                case "array-class":
+                    ArrayClass.Run();
                     break;
                 default:
                     Console.WriteLine("Unknown topic.");
