@@ -19,6 +19,7 @@ using FrameworkFundamental.ConversionMechanisms;
 using FrameworkFundamental.Numbers;
 using FrameworkFundamental.Enums;
 using FrameworkFundamental.EqualityComparison;
+using Collections.Enumeration;
 
 namespace LearnCSharp
 {
@@ -112,6 +113,9 @@ namespace LearnCSharp
                     break;
                 case "equality":
                     EqualityComparison.Run();
+                    break;
+                case "enumeration":
+                    Enumeration.Run();
                     break;
                 default:
                     Console.WriteLine("Unknown topic.");
