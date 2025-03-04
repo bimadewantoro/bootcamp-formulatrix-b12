@@ -12,6 +12,7 @@ using Advanced.SpeedWarning;
 using CreatingTypes.Classes;
 using CreatingTypes.Inheritance;
 using CreatingTypes.Interfaces;
+using FrameworkFundamental.StringText;
 
 namespace LearnCSharp
 {
@@ -83,6 +84,10 @@ namespace LearnCSharp
                     break;
                 case "filtering-exception":
                     FilteringException.Run();
+                    break;
+                // Framework fundamentals
+                case "string":
+                    StringText.Run();
                     break;
                 default:
                     Console.WriteLine("Unknown topic.");
