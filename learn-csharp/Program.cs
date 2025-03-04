@@ -14,6 +14,7 @@ using CreatingTypes.Inheritance;
 using CreatingTypes.Interfaces;
 using FrameworkFundamental.StringText;
 using FrameworkFundamental.DateTimes;
+using FrameworkFundamental.FormatingParsing;
 
 namespace LearnCSharp
 {
@@ -92,6 +93,9 @@ namespace LearnCSharp
                     break;
                 case "datetime":
                     DateTimes.Run();
+                    break;
+                case "formatting":
+                    FormatingParsing.Run();
                     break;
                 default:
                     Console.WriteLine("Unknown topic.");
