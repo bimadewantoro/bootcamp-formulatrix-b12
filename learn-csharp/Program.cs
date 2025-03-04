@@ -21,6 +21,7 @@ using FrameworkFundamental.Enums;
 using FrameworkFundamental.EqualityComparison;
 using Collections.Enumeration;
 using Collections.ArrayClass;
+using Collections.StacksQueues;
 
 namespace LearnCSharp
 {
@@ -115,11 +116,18 @@ namespace LearnCSharp
                 case "equality":
                     EqualityComparison.Run();
                     break;
+                // Collections topics
                 case "enumeration":
                     Enumeration.Run();
                     break;
                 case "array-class":
                     ArrayClass.Run();
+                    break;
+                case "queues":
+                    Queues.Run();
+                    break;
+                case "stacks":
+                    Stacks.Run();
                     break;
                 default:
                     Console.WriteLine("Unknown topic.");

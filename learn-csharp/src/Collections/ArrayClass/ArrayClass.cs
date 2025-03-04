@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace Collections.ArrayClass
 {
     public class ArrayClass
