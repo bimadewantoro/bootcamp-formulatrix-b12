@@ -15,6 +15,7 @@ using CreatingTypes.Interfaces;
 using FrameworkFundamental.StringText;
 using FrameworkFundamental.DateTimes;
 using FrameworkFundamental.FormatingParsing;
+using FrameworkFundamental.ConversionMechanisms;
 
 namespace LearnCSharp
 {
@@ -96,6 +97,9 @@ namespace LearnCSharp
                     break;
                 case "formatting":
                     FormatingParsing.Run();
+                    break;
+                case "conversion":
+                    ConversionMechanisms.Run();
                     break;
                 default:
                     Console.WriteLine("Unknown topic.");
