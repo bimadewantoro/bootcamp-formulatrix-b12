@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logic-exercise", "logic-exe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "learn-csharp", "learn-csharp\learn-csharp.csproj", "{417D86A9-F852-4281-9626-718623E343CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "battleships-console", "battleships-console\battleships-console.csproj", "{A7EE8354-7A26-4C0A-B686-758B243BB63B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{417D86A9-F852-4281-9626-718623E343CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{417D86A9-F852-4281-9626-718623E343CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{417D86A9-F852-4281-9626-718623E343CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7EE8354-7A26-4C0A-B686-758B243BB63B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7EE8354-7A26-4C0A-B686-758B243BB63B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7EE8354-7A26-4C0A-B686-758B243BB63B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7EE8354-7A26-4C0A-B686-758B243BB63B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
