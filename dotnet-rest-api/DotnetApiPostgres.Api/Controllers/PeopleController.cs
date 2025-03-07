@@ -1,9 +1,11 @@
 using DotnetApiPostgres.Api.Models.DTO;
 using DotnetApiPostgres.Api.Services;
+using Microsoft.AspNetCore.Authorization;   
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetApiPostgres.Api.Models;
 
+[Authorize]
 [Route("api/people")]
 [ApiController]
 public class PeopleController : ControllerBase
