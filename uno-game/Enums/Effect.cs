@@ -6,6 +6,7 @@ namespace UnoGame.Enums
         Reverse,
         DrawTwo,
         Wild,
-        WildDrawFour
+        WildDrawFour,
+        NoEffect
     }
 }
