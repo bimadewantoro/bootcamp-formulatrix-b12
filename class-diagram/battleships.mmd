@@ -1,0 +1,166 @@
+classDiagram
+    class GameController {
+        -Dictionary~IPlayer, IBoard~ boards
+        -Dictionary~IPlayer, List~IShip~~ ships
+        -List~IPlayer~ playerOrder
+        -int currentPlayerIndex
+        -GameState state
+        +event Action~IPlayer~ OnTurnChanged
+        +event Action~IPlayer~ OnGameOver
+        +event Action~IShip~ OnShipSunk
+        +event Action~int, int, ShotResult~ OnShotProcessed
+        +InitializeGame(int boardSize, int playerCount) : void
+        +StartGame() : bool
+        +PlaceShip(IPlayer player, ShipType type, int row, int column, Orientation orientation) : bool
+        +ProcessShot(int row, int column) : ShotResult
+        +SwitchTurn() : void
+        +IsGameOver() : bool
+        +GetCurrentPlayer() : IPlayer
+        +GetPlayerBoard(IPlayer player) : IBoard
+        +GetPlayerShips(IPlayer player) : IReadOnlyList~IShip~
+    }
+
+    class GameUI {
+        -GameController controller
+        +RenderGameState(Dictionary~IPlayer, IBoard~ boards, IPlayer currentPlayer) : void
+        +RenderPlayerBoard(IPlayer player, IBoard board, bool hideShips) : void
+        +DisplayMessage(string message) : void
+        +GetPlacementInput() : (ShipType, int, int, Orientation)
+        +GetShotInput() : (int, int)
+        +StartGameLoop() : void
+    }
+
+    class IPlayer {
+        +UpdateStatistic(string gameType, string stat, int value) : void
+        +GetStatistic(string gameType, string stat) : int
+    }
+    
+    class Player {
+        -string name
+        -string id
+        -Dictionary~string, Dictionary~string, int~~ statistics
+        +string Name
+        +string Id
+        +Player(string name)
+        +UpdateStatistic(string gameType, string stat, int value) : void
+        +GetStatistic(string gameType, string stat) : int
+    }
+
+    class IBoard {
+        +PlaceShip(IShip ship, int row, int column, Orientation orientation) : bool
+        +GetCellStatus(int row, int column) : CellStatus
+        +SetCellStatus(int row, int column, CellStatus status) : void
+        +GetShipAt(int row, int column) : IShip
+        +IsPositionValid(int row, int column) : bool
+        +GetAllShips() : IReadOnlyList~IShip~
+    }
+
+    class Board {
+        -int size
+        -CellStatus[,] cellStatus
+        -IShip[,] cellShips
+        -List~IShip~ ships
+        +int Size
+        +Board(int size)
+        +PlaceShip(IShip ship, int row, int column, Orientation orientation) : bool
+        +GetCellStatus(int row, int column) : CellStatus
+        +SetCellStatus(int row, int column, CellStatus status) : void
+        +GetShipAt(int row, int column) : IShip
+        +IsPositionValid(int row, int column) : bool
+        +GetAllShips() : IReadOnlyList~IShip~
+    }
+
+    class IShip {
+        +RecordHit(int row, int column) : bool
+        +IsSunk() : bool
+        +IsPositionPartOfShip(int row, int column) : bool
+        +GetOccupiedPositions() : (int, int)[]
+    }
+
+    class Ship {
+        -ShipType type
+        -int startRow
+        -int startColumn
+        -Orientation orientation
+        -bool[] hitArray
+        +ShipType Type
+        +int Size
+        +Ship(ShipType type)
+        +PlaceAt(int row, int column, Orientation orientation) : void
+        +RecordHit(int row, int column) : bool
+        +IsSunk() : bool
+        +IsPositionPartOfShip(int row, int column) : bool
+        +GetOccupiedPositions() : (int, int)[]
+    }
+    
+    class ShipFactory {
+        +CreateShip(ShipType type) : IShip
+        +CreateStandardShipSet() : List~IShip~
+    }
+
+
+    class ShipType {
+        CARRIER(5)
+        BATTLESHIP(4)
+        CRUISER(3)
+        SUBMARINE(3)
+        DESTROYER(2)
+    }
+
+    class CellStatus {
+        EMPTY
+        SHIP
+        HIT
+        MISS
+    }
+
+    class Orientation {
+        HORIZONTAL
+        VERTICAL
+    }
+
+    class GameState {
+        SETUP
+        PLAYING
+        FINISHED
+    }
+
+    class ShotResult {
+        HIT
+        MISS
+        SUNK
+        INVALID
+        ALREADY_SHOT
+    }
+
+    class Program {
+        +static void Main(string[] args)
+        -CreateGame(int numPlayers) : GameController
+        -StartGameLoop(GameController game, GameUI ui) : void
+    }
+
+    <<interface>> IPlayer
+    <<interface>> IShip
+    <<interface>> IBoard
+    <<enum>> ShipType
+    <<enum>> CellStatus
+    <<enum>> Orientation
+    <<enum>> GameState
+    <<enum>> ShotResult
+
+    Program --> GameController : creates
+    Program --> GameUI : creates
+    GameController o-- IPlayer : manages
+    GameController o-- IBoard : manages
+    GameController o-- IShip : tracks
+    GameController -- GameState : uses
+    GameController ..> ShotResult : returns
+    GameUI --> GameController : uses
+    IPlayer <|.. Player : implements
+    IBoard <|.. Board : implements
+    IShip <|.. Ship : implements
+    Board -- CellStatus : uses
+    Board o-- IShip : contains
+    ShipFactory --> IShip : creates
+    Ship -- ShipType : has
+    Ship -- Orientation : positioned in
