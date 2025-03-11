@@ -60,7 +60,7 @@ public class AuthService : IAuthService
     public async Task<UserResponseDTO?> LoginAsync(LoginUserDTO loginUserDto)
     {
         // Find user by username
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == loginUserDto.Username);
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginUserDto.Email);
 
         // Check if user exists and password is correct
         if (user == null || !BCrypt.Net.BCrypt.Verify(loginUserDto.Password, user.PasswordHash))
