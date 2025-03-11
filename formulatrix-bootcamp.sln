@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "learn-csharp", "learn-cshar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "battleships-console", "battleships-console\battleships-console.csproj", "{A7EE8354-7A26-4C0A-B686-758B243BB63B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uno-game", "uno-game\uno-game.csproj", "{23A04AF7-EDE9-425C-9353-EA0FB56D6C8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{A7EE8354-7A26-4C0A-B686-758B243BB63B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7EE8354-7A26-4C0A-B686-758B243BB63B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7EE8354-7A26-4C0A-B686-758B243BB63B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23A04AF7-EDE9-425C-9353-EA0FB56D6C8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23A04AF7-EDE9-425C-9353-EA0FB56D6C8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23A04AF7-EDE9-425C-9353-EA0FB56D6C8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23A04AF7-EDE9-425C-9353-EA0FB56D6C8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
