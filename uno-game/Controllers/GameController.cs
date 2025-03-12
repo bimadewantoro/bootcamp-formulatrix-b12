@@ -214,16 +214,24 @@ namespace UnoGame.Models
 
         public bool IsCardPlayable(ICard card)
         {
-            if (card == null || LastPlayedCard == null) return false;
+            if (card == null || LastPlayedCard == null) 
+                return false;
 
             if (card.Effect == Effect.Wild || card.Effect == Effect.WildDrawFour)
-            {
                 return true;
-            }
 
-            return card.Color == LastPlayedCard.Color ||
-                   (card.Effect != Effect.NoEffect && card.Effect == LastPlayedCard.Effect) ||
-                   card.Score == LastPlayedCard.Score;
+            if (card.Color == LastPlayedCard.Color)
+                return true;
+                
+            bool isNumberCard = (int)card.Score >= 0 && (int)card.Score <= 9;
+            bool isLastCardNumber = (int)LastPlayedCard.Score >= 0 && (int)LastPlayedCard.Score <= 9;
+            if (isNumberCard && isLastCardNumber && card.Score == LastPlayedCard.Score)
+                return true;
+                
+            if (card.Effect != Effect.NoEffect && card.Effect == LastPlayedCard.Effect)
+                return true;
+                
+            return false;
         }
 
         public bool RemoveCardFromhand(IPlayer player, ICard card)
