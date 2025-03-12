@@ -15,6 +15,10 @@ namespace UnoGame.Models
         private IPlayer _roundWinner;
         private bool _isTurnEnded;
         private int _turnDirection;
+        private bool _lastWildDrawFourWasLegal;
+        private IPlayer _lastWildDrawFourPlayer;
+        private bool _canChallengeWildDrawFour;
+        private bool _successfulChallengeJustHandled = false;
 
         public ICard LastPlayedCard { get; private set; }
 
@@ -133,6 +137,13 @@ namespace UnoGame.Models
 
         public bool NextTurn()
         {
+            if (_successfulChallengeJustHandled)
+            {
+                _successfulChallengeJustHandled = false;
+                _isTurnEnded = false;
+                return true;
+            }
+
             if (_cardInHands[_currentPlayer].Count == 0)
             {
                 _roundWinner = _currentPlayer;
@@ -188,6 +199,17 @@ namespace UnoGame.Models
             {
                 if (HasCardInHand(player, card) && IsCardPlayable(card))
                 {
+                    if (card.Effect == Effect.WildDrawFour)
+                    {
+                        _lastWildDrawFourWasLegal = IsWildDrawFourPlayLegal(player);
+                        _lastWildDrawFourPlayer = player;
+                        _canChallengeWildDrawFour = true;
+                    }
+                    else
+                    {
+                        _canChallengeWildDrawFour = false;
+                    }
+
                     RemoveCardFromhand(player, card);
                     _deck.MoveCardToDiscarded(card);
                     LastPlayedCard = card;
@@ -214,7 +236,7 @@ namespace UnoGame.Models
 
         public bool IsCardPlayable(ICard card)
         {
-            if (card == null || LastPlayedCard == null) 
+            if (card == null || LastPlayedCard == null)
                 return false;
 
             if (card.Effect == Effect.Wild || card.Effect == Effect.WildDrawFour)
@@ -222,15 +244,15 @@ namespace UnoGame.Models
 
             if (card.Color == LastPlayedCard.Color)
                 return true;
-                
+
             bool isNumberCard = (int)card.Score >= 0 && (int)card.Score <= 9;
             bool isLastCardNumber = (int)LastPlayedCard.Score >= 0 && (int)LastPlayedCard.Score <= 9;
             if (isNumberCard && isLastCardNumber && card.Score == LastPlayedCard.Score)
                 return true;
-                
+
             if (card.Effect != Effect.NoEffect && card.Effect == LastPlayedCard.Effect)
                 return true;
-                
+
             return false;
         }
 
@@ -390,17 +412,23 @@ namespace UnoGame.Models
 
                     int drawFourPlayerIndex = (_players.IndexOf(_currentPlayer) + _turnDirection + _players.Count) % _players.Count;
                     IPlayer drawFourPlayer = _players[drawFourPlayerIndex];
-                    ForcedDraw(drawFourPlayer, 4);
 
                     if (_display is Display enhancedDisplay5)
                     {
                         enhancedDisplay5.DisplayMessage($"\nColor changed to {selectedColor2}!", ConsoleColor.Magenta);
-                        enhancedDisplay5.DisplayMessage($"{drawFourPlayer.Name} draws 4 cards and loses their turn!", ConsoleColor.Magenta);
                     }
 
-                    EndTurn();
-                    NextTurn();
-                    EndTurn();
+                    if (!_canChallengeWildDrawFour)
+                    {
+                        ForcedDraw(drawFourPlayer, 4);
+                        if (_display is Display enhancedDisplay6)
+                        {
+                            enhancedDisplay6.DisplayMessage($"{drawFourPlayer.Name} draws 4 cards and loses their turn!", ConsoleColor.Magenta);
+                        }
+                        EndTurn();
+                        NextTurn();
+                        EndTurn();
+                    }
                     break;
             }
         }
@@ -422,9 +450,60 @@ namespace UnoGame.Models
             return _players[previousIndex];
         }
 
-        public bool ChallengeOnDrawFour(IPlayer player)
+        private bool IsWildDrawFourPlayLegal(IPlayer player)
         {
-            return false;
+            foreach (var card in GetPlayerCards(player))
+            {
+                if (card.Effect == Effect.WildDrawFour) continue;
+
+                if (card.Color == LastPlayedCard.Color)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool ChallengeOnDrawFour(IPlayer challenger)
+        {
+            if (!_canChallengeWildDrawFour || _lastWildDrawFourPlayer == null)
+            {
+                if (_display is Display enhancedDisplay)
+                {
+                    enhancedDisplay.DisplayMessage("\nNo Wild Draw Four to challenge!", ConsoleColor.Red);
+                }
+                return false;
+            }
+
+            _canChallengeWildDrawFour = false;
+
+            if (!_lastWildDrawFourWasLegal)
+            {
+                ForcedDraw(_lastWildDrawFourPlayer, 4);
+
+                _currentPlayer = challenger;
+                _isTurnEnded = false;
+                _successfulChallengeJustHandled = true;
+
+                if (_display is Display enhancedDisplay)
+                {
+                    enhancedDisplay.DisplayMessage($"\nChallenge successful! {_lastWildDrawFourPlayer.Name} had a matching card and must draw 4 cards.", ConsoleColor.Green);
+                    enhancedDisplay.DisplayMessage($"{challenger.Name} keeps their turn!", ConsoleColor.Green);
+                }
+                return true;
+            }
+            else
+            {
+                ForcedDraw(challenger, 6);
+                EndTurn();
+
+                if (_display is Display enhancedDisplay)
+                {
+                    enhancedDisplay.DisplayMessage($"\nChallenge failed! {_lastWildDrawFourPlayer.Name} had no matching cards. {challenger.Name} must draw 6 cards instead of 4.", ConsoleColor.Red);
+                }
+                return false;
+            }
         }
 
         public int CountRoundScore()
