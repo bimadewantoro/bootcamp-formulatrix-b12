@@ -227,5 +227,26 @@ namespace UnoGame.Models
         {
             Console.WriteLine("Game is in progress.");
         }
+
+        public bool AskForWildDrawFourChallenge(IPlayer previousPlayer)
+        {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("═════════════════════════════════════════════════");
+            Console.WriteLine("              WILD DRAW FOUR CHALLENGE           ");
+            Console.WriteLine("═════════════════════════════════════════════════");
+            Console.ResetColor();
+
+            Console.WriteLine($"\n{previousPlayer.Name} just played a Wild Draw Four card.");
+            Console.WriteLine("\nUNO RULE: This card can only be played if the player has NO matching color cards.");
+            Console.WriteLine("\nIf you challenge:");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("- If successful: They must draw 4 cards instead of you.");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("- If failed: You must draw 6 cards instead of 4.");
+            Console.ResetColor();
+
+            return GetYesNoInput("\nWould you like to challenge this play? (y/n): ");
+        }
     }
 }
