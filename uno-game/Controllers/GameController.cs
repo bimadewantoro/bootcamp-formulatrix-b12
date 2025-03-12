@@ -222,7 +222,7 @@ namespace UnoGame.Models
             }
 
             return card.Color == LastPlayedCard.Color ||
-                   card.Effect == LastPlayedCard.Effect ||
+                   (card.Effect != Effect.NoEffect && card.Effect == LastPlayedCard.Effect) ||
                    card.Score == LastPlayedCard.Score;
         }
 
