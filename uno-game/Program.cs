@@ -130,7 +130,7 @@ namespace UnoGame
                 }
                 else
                 {
-                    DrawCardAndMaybePLay(game, display, player);
+                    DrawCardAndMaybePlay(game, display, player);
                 }
             }
             else
@@ -138,8 +138,7 @@ namespace UnoGame
                 display.DisplayMessage("\nYou have no playable cards. Drawing a card...", ConsoleColor.Yellow);
                 Thread.Sleep(1000);
 
-                // Draw a card
-                DrawCardAndMaybePLay(game, display, player);
+                DrawCardAndMaybePlay(game, display, player);
             }
 
             if (game.CountCardInHand(player) == 1)
@@ -168,7 +167,7 @@ namespace UnoGame
             if (playableCardIndices.Count == 0)
             {
                 display.DisplayMessage("\nNo playable cards available. You must draw a card.", ConsoleColor.Red);
-                DrawCardAndMaybePLay(game, display, player);
+                DrawCardAndMaybePlay(game, display, player);
                 return;
             }
 
@@ -221,7 +220,7 @@ namespace UnoGame
             }
         }
 
-        static void DrawCardAndMaybePLay(GameController game, Display display, IPlayer player)
+        static void DrawCardAndMaybePlay(GameController game, Display display, IPlayer player)
         {
             display.DisplayMessage("\nDrawing a card...", ConsoleColor.Yellow);
             Thread.Sleep(1000);
