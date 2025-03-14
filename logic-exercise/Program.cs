@@ -8,6 +8,11 @@ for (int i = 1; i <= n; i++)
         Console.Write("foo");
         printed = true;
     }
+    if (i % 4 == 0)
+    {
+        Console.Write("baz");
+        printed = true;
+    }
     if (i % 5 == 0)
     {
         Console.Write("bar");
@@ -16,6 +21,11 @@ for (int i = 1; i <= n; i++)
     if (i % 7 == 0)
     {
         Console.Write("jazz");
+        printed = true;
+    }
+    if (i % 9 == 0)
+    {
+        Console.Write("huzz");
         printed = true;
     }
     if (!printed)
