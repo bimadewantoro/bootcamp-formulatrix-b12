@@ -249,13 +249,34 @@ namespace UnoGame
 
                     if (display.GetYesNoInput())
                     {
+                        bool isWildDrawFour = drawnCard.Effect == Effect.WildDrawFour;
+
                         game.PlayCard(player, drawnCard);
+
+                        if (isWildDrawFour)
+                        {
+                            int nextPlayerIndex = (game.GetPlayers().IndexOf(player) + game.GetTurnDirection() + game.GetPlayers().Count) % game.GetPlayers().Count;
+                            IPlayer nextPlayer = game.GetPlayers()[nextPlayerIndex];
+
+                            display.DisplayGameState(game, nextPlayer, false);
+
+                            if (display.AskForWildDrawFourChallenge(player))
+                            {
+                                bool challengeSuccessful = game.ChallengeOnDrawFour(nextPlayer);
+                                Thread.Sleep(2000);
+                            }
+                            else
+                            {
+                                display.DisplayMessage("\nChallenge declined. Wild Draw Four effect will be applied normally.", ConsoleColor.Yellow);
+                                game.ForcedDraw(nextPlayer, 4);
+                                display.DisplayMessage($"{nextPlayer.Name} draws 4 cards and loses their turn!", ConsoleColor.Magenta);
+                                game.EndTurn();
+                                game.NextTurn();
+                                game.EndTurn();
+                                Thread.Sleep(1000);
+                            }
+                        }
                     }
-                }
-                else
-                {
-                    display.DisplayMessage("\nThis card cannot be played.", ConsoleColor.Red);
-                    Thread.Sleep(1000);
                 }
             }
             else
