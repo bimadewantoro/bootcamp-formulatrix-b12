@@ -70,10 +70,17 @@ namespace UnoGame
 
                 PlayRound(game, display);
 
-                IPlayer roundWinner = game.GetRoundWinner();
+                IPlayer? roundWinner = game.GetRoundWinner();
                 int roundScore = game.CountRoundScore();
 
-                display.DisplayRoundWinner(roundWinner, roundScore);
+                if (roundWinner != null)
+                {
+                    display.DisplayRoundWinner(roundWinner, roundScore);
+                }
+                else
+                {
+                    display.DisplayMessage("No round winner determined!", ConsoleColor.Yellow);
+                }
 
                 if (game.IsGameOver())
                 {
@@ -230,8 +237,7 @@ namespace UnoGame
             display.DisplayMessage("\nDrawing a card...", ConsoleColor.Yellow);
             Thread.Sleep(1000);
 
-            // Draw card
-            ICard drawnCard = null;
+            ICard? drawnCard = null;
             if (game.DrawCard(player))
             {
                 List<ICard> playerCards = game.GetPlayerCards(player);

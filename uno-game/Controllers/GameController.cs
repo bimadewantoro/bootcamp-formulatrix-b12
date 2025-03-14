@@ -12,18 +12,18 @@ namespace UnoGame.Models
         private readonly List<IPlayer> _players;
         public int RoundCount { get; private set; }
         private IPlayer _currentPlayer;
-        private IPlayer _roundWinner;
+        private IPlayer? _roundWinner;
         private bool _isTurnEnded;
         private int _turnDirection;
         private bool _lastWildDrawFourWasLegal;
-        private IPlayer _lastWildDrawFourPlayer;
+        private IPlayer? _lastWildDrawFourPlayer;
         private bool _canChallengeWildDrawFour;
         private bool _successfulChallengeJustHandled = false;
 
-        public ICard LastPlayedCard { get; private set; }
+        public ICard? LastPlayedCard { get; private set; }
 
-        public event Action OnRoundStart;
-        public event Action<ICard> OnCardPlay;
+        public event Action OnRoundStart = delegate { };
+        public event Action<ICard> OnCardPlay = delegate { };
 
         public const int WIN_SCORE = 500;
 
@@ -58,7 +58,7 @@ namespace UnoGame.Models
             {
                 return new List<ICard>(_cardInHands[player]);
             }
-            return null;
+            return new List<ICard>();
         }
 
         public int GetTurnDirection() => _turnDirection;
@@ -93,14 +93,22 @@ namespace UnoGame.Models
             {
                 foreach (var player in _players)
                 {
-                    AddCardToHand(player, _deck.Draw());
+                    ICard? drawnCard = _deck.Draw();
+                    if (drawnCard != null)
+                    {
+                        AddCardToHand(player, drawnCard);
+                    }
                 }
             }
 
-            ICard firstCard;
+            ICard? firstCard;
             do
             {
                 firstCard = _deck.Draw();
+                if (firstCard == null)
+                {
+                    continue;
+                }
 
                 if (firstCard.Effect == Effect.WildDrawFour)
                 {
@@ -175,7 +183,7 @@ namespace UnoGame.Models
 
         public bool DrawCard(IPlayer player)
         {
-            ICard card = _deck.Draw();
+            ICard? card = _deck.Draw();
             if (card != null)
             {
                 return AddCardToHand(player, card);
@@ -456,7 +464,7 @@ namespace UnoGame.Models
             {
                 if (card.Effect == Effect.WildDrawFour) continue;
 
-                if (card.Color == LastPlayedCard.Color)
+                if (LastPlayedCard != null && card.Color == LastPlayedCard.Color)
                 {
                     return false;
                 }
@@ -525,7 +533,7 @@ namespace UnoGame.Models
             return score;
         }
 
-        public IPlayer GetRoundWinner()
+        public IPlayer? GetRoundWinner()
         {
             return _roundWinner;
         }

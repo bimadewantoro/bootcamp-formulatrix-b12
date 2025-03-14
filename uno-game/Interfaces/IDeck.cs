@@ -4,7 +4,7 @@ namespace UnoGame.Interfaces
     {
         void GenerateCards();
         void Shuffle();
-        ICard Draw();
+        ICard? Draw();
         void MoveCardToDiscarded(ICard card);
         void RecycleDiscarded();
     }
