@@ -62,7 +62,7 @@ namespace UnoGame.Models
             }
         }
 
-        public ICard Draw()
+        public ICard? Draw()
         {
             if (_drawableCards.Count == 0)
             {

@@ -18,7 +18,7 @@ namespace UnoGame.Models
 
         public string ReceiveInput()
         {
-            return Console.ReadLine();
+            return Console.ReadLine() ?? string.Empty;
         }
 
         public void ClearScreen()
@@ -117,7 +117,7 @@ namespace UnoGame.Models
             }
         }
 
-        public void DisplayCard(ICard card)
+        public void DisplayCard(ICard? card)
         {
             if (card == null)
             {
@@ -187,7 +187,7 @@ namespace UnoGame.Models
             while (true)
             {
                 Console.Write(prompt);
-                string input = Console.ReadLine();
+                string input = Console.ReadLine() ?? string.Empty;
 
                 if (int.TryParse(input, out int choice) && choice >= min && choice <= max)
                 {
@@ -205,7 +205,7 @@ namespace UnoGame.Models
             while (true)
             {
                 Console.Write(prompt);
-                string input = Console.ReadLine()?.Trim().ToLower();
+                string input = Console.ReadLine()?.Trim().ToLower() ?? string.Empty;
 
                 if (input == "y" || input == "yes")
                 {
