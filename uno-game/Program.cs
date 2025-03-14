@@ -199,6 +199,11 @@ namespace UnoGame
                         else
                         {
                             display.DisplayMessage("\nChallenge declined. Wild Draw Four effect will be applied normally.", ConsoleColor.Yellow);
+                            game.ForcedDraw(nextPlayer, 4);
+                            display.DisplayMessage($"{nextPlayer.Name} draws 4 cards and loses their turn!", ConsoleColor.Magenta);
+                            game.EndTurn();
+                            game.NextTurn();
+                            game.EndTurn();
                             Thread.Sleep(1000);
                         }
                     }
