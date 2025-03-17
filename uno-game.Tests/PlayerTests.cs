@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using UnoGame.Models;
 
 namespace uno_game.Tests
