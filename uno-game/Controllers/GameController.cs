@@ -29,9 +29,9 @@ namespace UnoGame.Models
 
         public GameController(List<IPlayer> players, IDeck deck, IDisplay display)
         {
-            _players = players ?? throw new ArgumentNullException(nameof(players));
-            _deck = deck ?? throw new ArgumentNullException(nameof(deck));
-            _display = display ?? throw new ArgumentNullException(nameof(display));
+            _players = players;
+            _deck = deck;
+            _display = display;
 
             _cardInHands = new Dictionary<IPlayer, List<ICard>>();
             _playerScores = new Dictionary<IPlayer, int>();
