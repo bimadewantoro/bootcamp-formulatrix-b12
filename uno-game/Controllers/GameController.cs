@@ -20,7 +20,7 @@ namespace UnoGame.Models
         private bool _canChallengeWildDrawFour;
         private bool _successfulChallengeJustHandled = false;
 
-    public ICard? LastPlayedCard { get; private set; }
+        public ICard? LastPlayedCard { get; private set; }
 
         public event Action OnRoundStart = delegate { };
         public event Action<ICard> OnCardPlay = delegate { };
