@@ -25,7 +25,7 @@ namespace UnoGame.Models
         public event Action OnRoundStart = delegate { };
         public event Action<ICard> OnCardPlay = delegate { };
 
-        public const int WIN_SCORE = 500;
+        public const int WinScore = 500;
 
         public GameController(List<IPlayer> players, IDeck deck, IDisplay display)
         {
@@ -73,7 +73,7 @@ namespace UnoGame.Models
 
         public bool IsGameOver()
         {
-            return _playerScores.Any(ps => ps.Value >= WIN_SCORE);
+            return _playerScores.Any(ps => ps.Value >= WinScore);
         }
 
         public IPlayer GetGameWinner()
