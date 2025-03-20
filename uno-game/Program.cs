@@ -6,7 +6,7 @@ namespace UnoGame
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
@@ -19,21 +19,21 @@ namespace UnoGame
 
             GameController game = new GameController(players, deck, display);
 
-            game.OnRoundStart += () =>
+            game.OnRoundStart += async () =>
             {
                 display.DisplayMessage("\nNew round started!", ConsoleColor.Cyan);
-                Thread.Sleep(1500);
+                await Task.Delay(1500);
             };
 
-            game.OnCardPlay += (card) =>
+            game.OnCardPlay += async (card) =>
             {
                 display.DisplayMessage($"\nCard played: ", ConsoleColor.White);
                 display.DisplayCard(card);
                 Console.WriteLine();
-                Thread.Sleep(1000);
+                await Task.Delay(1000);
             };
 
-            PlayGame(game, display);
+            await PlayGame(game, display);
 
             IPlayer winner = game.GetGameWinner();
             display.DisplayGameWinner(winner, game.GetPlayerScore(winner));
@@ -62,13 +62,13 @@ namespace UnoGame
             return players;
         }
 
-        static void PlayGame(GameController game, Display display)
+        static async Task PlayGame(GameController game, Display display)
         {
             while (!game.IsGameOver())
             {
                 game.StartNewRound();
 
-                PlayRound(game, display);
+                await PlayRound(game, display);
 
                 IPlayer? roundWinner = game.GetRoundWinner();
                 int roundScore = game.CountRoundScore();
@@ -91,7 +91,7 @@ namespace UnoGame
             }
         }
 
-        static void PlayRound(GameController game, Display display)
+        static async Task PlayRound(GameController game, Display display)
         {
             while (true)
             {
@@ -99,7 +99,7 @@ namespace UnoGame
 
                 display.DisplayGameState(game, currentPlayer);
 
-                ProcessPlayerTurn(game, display, currentPlayer);
+                await ProcessPlayerTurn(game, display, currentPlayer);
 
                 if (game.IsRoundOver())
                 {
@@ -111,11 +111,11 @@ namespace UnoGame
                     break;
                 }
 
-                Thread.Sleep(1000);
+                await Task.Delay(1000);
             }
         }
 
-        static void ProcessPlayerTurn(GameController game, Display display, IPlayer player)
+        static async Task ProcessPlayerTurn(GameController game, Display display, IPlayer player)
         {
             display.DisplayMessage($"\n{player.Name}'s turn", ConsoleColor.Yellow);
 
@@ -133,32 +133,32 @@ namespace UnoGame
 
                 if (choice == 1)
                 {
-                    PlayCard(game, display, player);
+                    await PlayCard(game, display, player);
                 }
                 else
                 {
-                    DrawCardAndMaybePlay(game, display, player);
+                    await DrawCardAndMaybePlay(game, display, player);
                 }
             }
             else
             {
                 display.DisplayMessage("\nYou have no playable cards. Drawing a card...", ConsoleColor.Yellow);
-                Thread.Sleep(1000);
+                await Task.Delay(1000);
 
-                DrawCardAndMaybePlay(game, display, player);
+                await DrawCardAndMaybePlay(game, display, player);
             }
 
             if (game.CountCardInHand(player) == 1)
             {
                 display.DisplayMessage("\nUNO!", ConsoleColor.Magenta);
                 game.SayUno();
-                Thread.Sleep(1000);
+                await Task.Delay(1000);
             }
 
             game.EndTurn();
         }
 
-        static void PlayCard(GameController game, Display display, IPlayer player)
+        static async Task PlayCard(GameController game, Display display, IPlayer player)
         {
             List<ICard> playerCards = game.GetPlayerCards(player);
 
@@ -174,7 +174,7 @@ namespace UnoGame
             if (playableCardIndices.Count == 0)
             {
                 display.DisplayMessage("\nNo playable cards available. You must draw a card.", ConsoleColor.Red);
-                DrawCardAndMaybePlay(game, display, player);
+                await DrawCardAndMaybePlay(game, display, player);
                 return;
             }
 
@@ -201,7 +201,7 @@ namespace UnoGame
                         if (display.AskForWildDrawFourChallenge(player))
                         {
                             bool challengeSuccessful = game.ChallengeOnDrawFour(nextPlayer);
-                            Thread.Sleep(2000);
+                            await Task.Delay(2000);
                         }
                         else
                         {
@@ -211,7 +211,7 @@ namespace UnoGame
                             game.EndTurn();
                             game.NextTurn();
                             game.EndTurn();
-                            Thread.Sleep(1000);
+                            await Task.Delay(1000);
                         }
                     }
 
@@ -225,17 +225,17 @@ namespace UnoGame
                     var key = Console.ReadKey(true);
                     if (key.Key == ConsoleKey.C)
                     {
-                        ProcessPlayerTurn(game, display, player);
+                        await ProcessPlayerTurn(game, display, player);
                         return;
                     }
                 }
             }
         }
 
-        static void DrawCardAndMaybePlay(GameController game, Display display, IPlayer player)
+        static async Task DrawCardAndMaybePlay(GameController game, Display display, IPlayer player)
         {
             display.DisplayMessage("\nDrawing a card...", ConsoleColor.Yellow);
-            Thread.Sleep(1000);
+            await Task.Delay(1000);
 
             ICard? drawnCard = null;
             if (game.DrawCard(player))
@@ -246,7 +246,7 @@ namespace UnoGame
                 display.DisplayMessage("You drew: ", ConsoleColor.White);
                 display.DisplayCard(drawnCard);
                 Console.WriteLine();
-                Thread.Sleep(1000);
+                await Task.Delay(1000);
 
                 if (game.IsCardPlayable(drawnCard))
                 {
@@ -269,7 +269,7 @@ namespace UnoGame
                             if (display.AskForWildDrawFourChallenge(player))
                             {
                                 bool challengeSuccessful = game.ChallengeOnDrawFour(nextPlayer);
-                                Thread.Sleep(2000);
+                                await Task.Delay(2000);
                             }
                             else
                             {
@@ -279,7 +279,7 @@ namespace UnoGame
                                 game.EndTurn();
                                 game.NextTurn();
                                 game.EndTurn();
-                                Thread.Sleep(1000);
+                                await Task.Delay(1000);
                             }
                         }
                     }
@@ -289,7 +289,7 @@ namespace UnoGame
             {
                 display.DisplayMessage("\nNo cards left to draw! Recycling discard pile...", ConsoleColor.Yellow);
                 game.RecycleDiscardedCards();
-                Thread.Sleep(1000);
+                await Task.Delay(1000);
 
                 if (game.DrawCard(player))
                 {
@@ -299,7 +299,7 @@ namespace UnoGame
                     display.DisplayMessage("You drew: ", ConsoleColor.White);
                     display.DisplayCard(drawnCard);
                     Console.WriteLine();
-                    Thread.Sleep(1000);
+                    await Task.Delay(1000);
 
                     if (game.IsCardPlayable(drawnCard))
                     {
@@ -314,13 +314,13 @@ namespace UnoGame
                     else
                     {
                         display.DisplayMessage("\nThis card cannot be played.", ConsoleColor.Red);
-                        Thread.Sleep(1000);
+                        await Task.Delay(1000);
                     }
                 }
                 else
                 {
                     display.DisplayMessage("\nStill no cards to draw! Skipping turn.", ConsoleColor.Red);
-                    Thread.Sleep(1000);
+                    await Task.Delay(1000);
                 }
             }
         }
