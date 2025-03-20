@@ -386,10 +386,29 @@ namespace UnoGame.Models
 
                 case Effect.Reverse:
                     ReverseTurnOrder();
-                    if (_display is Display enhancedDisplay2)
+                    if (_players.Count == 2)
                     {
-                        string direction = _turnDirection > 0 ? "clockwise" : "counter-clockwise";
-                        enhancedDisplay2.DisplayMessage($"\nDirection changed to {direction}!", ConsoleColor.Magenta);
+                        int reverseSkipPlayerIndex = (_players.IndexOf(_currentPlayer) + _turnDirection + _players.Count) % _players.Count;
+                        IPlayer reverseSkippedPlayer = _players[reverseSkipPlayerIndex];
+
+                        if (_display is Display enhancedDisplay2)
+                        {
+                            string direction = _turnDirection > 0 ? "clockwise" : "counter-clockwise";
+                            enhancedDisplay2.DisplayMessage($"\nDirection changed to {direction}!", ConsoleColor.Magenta);
+                            enhancedDisplay2.DisplayMessage($"\n{reverseSkippedPlayer.Name}'s turn is skipped!", ConsoleColor.Magenta);
+                        }
+
+                        EndTurn();
+                        NextTurn();
+                        EndTurn();
+                    }
+                    else
+                    {
+                        if (_display is Display enhancedDisplay2)
+                        {
+                            string direction = _turnDirection > 0 ? "clockwise" : "counter-clockwise";
+                            enhancedDisplay2.DisplayMessage($"\nDirection changed to {direction}!", ConsoleColor.Magenta);
+                        }
                     }
                     break;
 
