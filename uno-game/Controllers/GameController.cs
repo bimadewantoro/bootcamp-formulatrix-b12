@@ -528,7 +528,7 @@ namespace UnoGame.Models
 
                 if (_display is Display enhancedDisplay)
                 {
-                    enhancedDisplay.DisplayMessage($"\nChallenge failed! {_lastWildDrawFourPlayer.Name} had no matching cards. {challenger.Name} must draw 6 cards instead of 4.", ConsoleColor.Red);
+                    enhancedDisplay.DisplayMessage($"\nChallenge failed! {cardPlayer.Name} had no matching cards. {challenger.Name} must draw 6 cards instead of 4.", ConsoleColor.Red);
                 }
                 return false;
             }
