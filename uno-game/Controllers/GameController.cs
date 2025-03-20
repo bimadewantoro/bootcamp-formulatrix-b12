@@ -381,7 +381,7 @@ namespace UnoGame.Models
                     }
                     EndTurn();
                     NextTurn();
-                    EndTurn();
+                    SkipTurn(_currentPlayer);
                     break;
 
                 case Effect.Reverse:
@@ -400,7 +400,7 @@ namespace UnoGame.Models
 
                         EndTurn();
                         NextTurn();
-                        EndTurn();
+                        SkipTurn(_currentPlayer);
                     }
                     else
                     {
@@ -421,7 +421,7 @@ namespace UnoGame.Models
                     }
                     EndTurn();
                     NextTurn();
-                    EndTurn();
+                    SkipTurn(_currentPlayer);
                     break;
 
                 case Effect.Wild:
@@ -454,7 +454,7 @@ namespace UnoGame.Models
                         }
                         EndTurn();
                         NextTurn();
-                        EndTurn();
+                        SkipTurn(_currentPlayer);
                     }
                     break;
             }
