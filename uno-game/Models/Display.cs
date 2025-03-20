@@ -228,7 +228,7 @@ namespace UnoGame.Models
             Console.WriteLine("Game is in progress.");
         }
 
-        public bool AskForWildDrawFourChallenge(IPlayer previousPlayer)
+        public bool DisplayAskForWildDrawFourChallenge(IPlayer previousPlayer)
         {
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Yellow;

@@ -198,7 +198,7 @@ namespace UnoGame
 
                         display.DisplayGameState(game, nextPlayer, false);
 
-                        if (display.AskForWildDrawFourChallenge(player))
+                        if (display.DisplayAskForWildDrawFourChallenge(player))
                         {
                             bool challengeSuccessful = game.ChallengeOnDrawFour(nextPlayer);
                             await Task.Delay(2000);
@@ -266,7 +266,7 @@ namespace UnoGame
 
                             display.DisplayGameState(game, nextPlayer, false);
 
-                            if (display.AskForWildDrawFourChallenge(player))
+                            if (display.DisplayAskForWildDrawFourChallenge(player))
                             {
                                 bool challengeSuccessful = game.ChallengeOnDrawFour(nextPlayer);
                                 await Task.Delay(2000);

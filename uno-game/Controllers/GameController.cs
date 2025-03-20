@@ -167,11 +167,6 @@ namespace UnoGame.Models
             return true;
         }
 
-        public void PassTurn()
-        {
-            EndTurn();
-        }
-
         public bool SayUno()
         {
             if (GetCardAmountInHand(_currentPlayer) == 1)
