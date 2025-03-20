@@ -1,0 +1,170 @@
+---
+title: Classic Uno Class Diagram
+---
+classDiagram
+    class ICard {
+        <<interface>> 
+        +Color Color
+        +Score Score
+        +Effect Effect
+    }
+
+    class IDeck {
+        <<interface>>
+        -List<.ICard> _drawableCards
+        -List<.ICard> _discardedCards
+        +GenerateCards()
+        +Shuffle()
+        +Draw()
+        +MoveCardToDiscarded(ICard card)
+        +RecycleDiscarded()
+    }
+
+    class IDisplay {
+        <<interface>>
+        +ReceiveInput()
+        +DisplayGame()
+    }
+
+    class IPlayer {
+        <<interface>> 
+        +int Id
+        +string Name
+    }
+
+    class Deck {
+        -List<.ICard> _drawableCards
+        -List<.ICard> _discardedCards
+        +GenerateCards(): void
+        +Shuffle(): void
+        +Draw(): Card
+        +MoveCardToDiscarded(ICard card): void
+        +RecycleDiscarded(): void
+    }
+
+    class GameController {
+        -IDeck _deck: readonly
+        -Dictionary<.IPlayer, List<.ICard>> _cardInHands
+        -Dictionary<.IPlayer, int> _playerScores
+	    +int RoundCount
+	    -IPlayer _currentPlayer
+        -IPlayer _roundWinner
+	    -bool _isTurnEnded
+	    -int _turnDirection
+	    +ICard LastPlayedCard: readonly
+	    +Action OnRoundStart
+	    +Action<.ICard> OnCardPlay
+
+	    +GameController(List<.IPlayer> players, IDeck deck, IDisplay display)
+        +StartNewRound(): void
+        +DistributeCards(): void
+        +IsGameOver(): void
+        +GetGameWinner(): int
+        +RecycleDiscardedCards(): void
+        +EndTurn(): void
+        +NextTurn(): bool
+        +SayUno(): bool
+        +DrawCard(IPlayer player): bool
+        +AddCardToHand(IPlayer player, ICard card): bool
+        +PlayCard(IPlayer player, ICard card): bool
+        +HasPlayableCard(IPlayer player): bool
+        +IsCardPlayable(ICard card): bool       
+        +RemoveCardFromhand(IPlayer player, ICard card): bool
+        +HasCardInHand(IPlayer player, ICard card): bool
+        +CountCardInHand(IPlayer player): int
+        +GetPlayerScore(IPlayer player): int
+        +AddPlayerScore(IPlayer player, int amount): void
+	    +ReverseTurnOrder(): void
+        +ForcedDraw(IPlayer player, int amount): bool
+	    +SkipTurn(IPlayer player): bool
+	    +SelectColor(): Color
+        +HandleCardEffect(ICard card): void
+        +NotifyCardPlayed(ICard card): void
+	    +GetCardAmountInHand(IPlayer player): int
+        +GetPreviousPlayer(): Player
+        +GetPlayerCards(IPlayer player): list
+        +IsWildDrawFourPlayLegal(IPlayer player): bool
+	    +ChallengeOnDrawFour(IPlayer player): bool
+	    +CountRoundScore(): int
+        +IsRoundOver(): bool
+        +ResetRoundWinner: void
+    }
+
+    class Card {
+	    +Color Color: readonly
+        +Effect Effect: readonly
+        +Score Score: readonly
+        +Card(Color color, Effect effect, Score score)
+    }
+
+    class Display {
+        -Dictionary<Color, ConsoleColor> _colorMapping
+        +ReceiveInput(string text): bool
+        +ClearScreen(): void
+        +DisplayTitle(): void
+        +DisplayWelcomeMessage():void
+        +DisplayGameState(GameController game, IPlayer player, bool showCards = true):void
+        +DisplayPlayerHand(GameController game, IPlayer player): void
+        +DisplayCard(Icard card): void
+        +DisplayRoundWinner(IPlayer player, int roundScore): void
+        +DisplayGameWinner(IPlayer player, int finalScore): void
+        +DisplayMessage(string message, ConsoleColor color = ConsoleColor.White): void
+        +GetNumericInput(int min, int max, string prompt = "Enter your choice: "): int
+        +GetYesNoInput(string prompt = "Confirm? (y/n): "): bool
+        +DisplayGame(): void
+        +DisplayAskForWildDrawFourChallenge(IPlayer player): bool
+    }
+
+    class Player {
+	    +int Id: readonly
+	    +string Name: readonly
+
+	    +Player(int id, string name)
+    }
+
+    class Color {
+        <<enum>>
+        Red,
+        Green,
+        Blue,
+        Yellow,
+    }
+
+    class Effect {
+        <<enum>>
+        NoEffect,
+        DrawTwo,
+        Reverse,
+        Skip,
+        Wild,
+        WildDrawFour
+    }
+
+    class Score {
+        <<enum>>
+	    DrawTwo = 20,
+	    Skip = 20,
+	    Reverse = 20,
+	    Wild = 50,
+	    WildDrawFour = 50,
+	    Number0 = 0,
+	    Number1 = 1,
+	    Number2 = 2,
+	    ...
+    }
+
+    ICard "1" <|-- "1" Card : implements
+    IDeck "1" <|-- "1" Deck : implements
+    IDisplay "1" <|-- "1" Display : implements
+    IPlayer "1" <|-- "1" Player : implements
+
+    Deck "1" --o "*" ICard : contains
+
+    GameController "1" --o "1" IDeck : uses
+    GameController "1" --o "*" ICard : manages
+    GameController "1" --o "1" IDisplay : uses
+    GameController "1" --o "*" IPlayer : manages
+
+    Card "1" --* "1" Color : has
+    Card "1" --* "1" Effect : has
+    Card "1" --* "1" Score : has
