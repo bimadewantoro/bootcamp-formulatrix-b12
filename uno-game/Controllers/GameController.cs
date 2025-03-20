@@ -494,7 +494,7 @@ namespace UnoGame.Models
 
         public bool ChallengeOnDrawFour(IPlayer challenger)
         {
-            if (!_canChallengeWildDrawFour || _lastWildDrawFourPlayer == null)
+            if (!_canChallengeWildDrawFour)
             {
                 if (_display is Display enhancedDisplay)
                 {
@@ -504,10 +504,11 @@ namespace UnoGame.Models
             }
 
             _canChallengeWildDrawFour = false;
+            IPlayer cardPlayer = _lastWildDrawFourPlayer ?? GetPreviousPlayer();
 
             if (!_lastWildDrawFourWasLegal)
             {
-                ForcedDraw(_lastWildDrawFourPlayer, 4);
+                ForcedDraw(cardPlayer, 4);
 
                 _currentPlayer = challenger;
                 _isTurnEnded = false;
@@ -515,7 +516,7 @@ namespace UnoGame.Models
 
                 if (_display is Display enhancedDisplay)
                 {
-                    enhancedDisplay.DisplayMessage($"\nChallenge successful! {_lastWildDrawFourPlayer.Name} had a matching card and must draw 4 cards.", ConsoleColor.Green);
+                    enhancedDisplay.DisplayMessage($"\nChallenge successful! {cardPlayer.Name} had a matching card and must draw 4 cards.", ConsoleColor.Green);
                     enhancedDisplay.DisplayMessage($"{challenger.Name} keeps their turn!", ConsoleColor.Green);
                 }
                 return true;
