@@ -203,6 +203,9 @@ namespace UnoGame.Models
 
         public bool PlayCard(IPlayer player, ICard card)
         {
+            if (_isTurnEnded || player != _currentPlayer)
+                return false;
+
             if (player != null && card != null && _cardInHands.ContainsKey(player))
             {
                 if (HasCardInHand(player, card) && IsCardPlayable(card))
