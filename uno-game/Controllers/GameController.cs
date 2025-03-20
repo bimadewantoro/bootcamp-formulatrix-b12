@@ -152,7 +152,7 @@ namespace UnoGame.Models
                 return true;
             }
 
-            if (_cardInHands[_currentPlayer].Count == 0)
+            if (GetCardAmountInHand(_currentPlayer) == 0)
             {
                 _roundWinner = _currentPlayer;
                 return false;
@@ -174,7 +174,7 @@ namespace UnoGame.Models
 
         public bool SayUno()
         {
-            if (_cardInHands[_currentPlayer].Count == 1)
+            if (GetCardAmountInHand(_currentPlayer) == 1)
             {
                 return true;
             }
