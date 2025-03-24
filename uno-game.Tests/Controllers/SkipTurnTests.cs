@@ -1,4 +1,4 @@
-namespace UnoGame.Tests.Controllers.GameControllerTests
+namespace uno_game.Tests.Controllers
 {
     [TestFixture]
     public class SkipTurnTests : GameControllerTestBase

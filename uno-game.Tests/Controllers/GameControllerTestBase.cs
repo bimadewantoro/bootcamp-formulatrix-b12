@@ -1,9 +1,9 @@
 using Moq;
-using UnoGame.Models;
-using UnoGame.Interfaces;
 using UnoGame.Enums;
+using UnoGame.Interfaces;
+using UnoGame.Models;
 
-namespace UnoGame.Tests.Controllers.GameControllerTests
+namespace uno_game.Tests.Controllers
 {
     public class GameControllerTestBase
     {
