@@ -1,7 +1,3 @@
-using NUnit.Framework;
-using Moq;
-using UnoGame.Interfaces;
-
 namespace UnoGame.Tests.Controllers.GameControllerTests
 {
     [TestFixture]
@@ -38,7 +34,7 @@ namespace UnoGame.Tests.Controllers.GameControllerTests
         public void SkipTurn_NullPlayer_ReturnsFalse()
         {
             // Act
-            bool result = _controller.SkipTurn(null);
+            bool result = _controller.SkipTurn(null!);
 
             // Assert
             Assert.That(result, Is.False, "SkipTurn should return false when passed a null player");
