@@ -1,0 +1,25 @@
+.gslide-description {
+    .gdesc-inner{
+        .gslide-desc{
+            font-family: $font-family-base;
+            font-size: 15px;
+        }
+        .gslide-title {
+            font-family: $font-family-base;
+            margin-bottom: 5px;
+            font-size: 17px;
+            font-weight: $font-weight-medium;
+        }
+        
+    }
+}
+
+
+
+.glightbox-clean .gslide-description{
+    background-color: var(--#{$prefix}secondary-bg);
+}
+
+.gslide-description .gdesc-inner .gslide-title{
+    color: var(--#{$prefix}body-color);
+}
