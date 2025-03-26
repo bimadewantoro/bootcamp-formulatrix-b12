@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using FluentValidation.AspNetCore;
 using JobManagementAPI.WebAPI.Validators.Auth;
+using JobManagementAPI.WebAPI.Validators.Job;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,9 +29,11 @@ builder.Services.AddAutoMapper(typeof(MappingProfiles));
 // Configure Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+builder.Services.AddScoped<IJobRepository, JobRepository>();
 
 // Configure Services
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IJobService, JobService>();
 
 // Configure JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -54,7 +57,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Job Recruitment API", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { 
+        Title = "Company Recruitment API", 
+        Version = "v1",
+        Description = "API for managing job recruitment for a company",
+        Contact = new OpenApiContact
+        {
+            Name = "Bima Dewantoro",
+            Email = "bimadewantoro22@gmail.com"
+        }
+    });
     
     // Add JWT Authentication to Swagger
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -83,6 +95,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateJobDtoValidator>();
 
 var app = builder.Build();
 
