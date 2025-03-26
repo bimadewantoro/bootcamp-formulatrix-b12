@@ -12,6 +12,7 @@ namespace JobManagementAPI.WebAPI.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<Job> Jobs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -45,6 +46,25 @@ namespace JobManagementAPI.WebAPI.Data
                       .WithMany(u => u.RefreshTokens)
                       .HasForeignKey(e => e.UserId)
                       .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            // Job configuration
+            modelBuilder.Entity<Job>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Title).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.Description).IsRequired().HasMaxLength(2000);
+                entity.Property(e => e.Department).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.Location).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.JobType).IsRequired().HasMaxLength(50);
+                entity.Property(e => e.IsActive).IsRequired().HasDefaultValue(true);
+                entity.Property(e => e.CreatedAt).IsRequired();
+                entity.Property(e => e.CreatedBy).IsRequired().HasMaxLength(50);
+                
+                // Add index on Department for faster lookups
+                entity.HasIndex(e => e.Department);
+                // Add index on IsActive for faster lookups
+                entity.HasIndex(e => e.IsActive);
             });
         }
     }
