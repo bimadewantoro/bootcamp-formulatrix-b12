@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace JobManagementAPI.WebAPI.Models.DTOs.Auth
+﻿namespace JobManagementAPI.WebAPI.Models.DTOs.Auth
 {
     public class RegisterUserDto
     {
