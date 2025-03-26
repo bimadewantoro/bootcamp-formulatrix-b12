@@ -1,3 +1,4 @@
+using FluentValidation;
 using System.Text;
 using JobManagementAPI.WebAPI.Data;
 using JobManagementAPI.WebAPI.Data.Repositories.Implementations;
@@ -9,6 +10,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using FluentValidation.AspNetCore;
+using JobManagementAPI.WebAPI.Validators.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -78,6 +81,8 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserDtoValidator>();
 
 var app = builder.Build();
 

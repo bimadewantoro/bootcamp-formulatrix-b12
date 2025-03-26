@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using JobManagementAPI.WebAPI.Data.Repositories.Interfaces;
 using JobManagementAPI.WebAPI.Models.DTOs.Auth;
 using JobManagementAPI.WebAPI.Helpers;
 using JobManagementAPI.WebAPI.Models;
 using JobManagementAPI.WebAPI.Services.Interfaces;
+using JobManagementAPI.WebAPI.Validators.Auth;
 
 namespace JobManagementAPI.WebAPI.Services.Implementations
 {
@@ -13,6 +15,8 @@ namespace JobManagementAPI.WebAPI.Services.Implementations
         private readonly IRefreshTokenRepository _refreshTokenRepository;
         private readonly IMapper _mapper;
         private readonly JwtService _jwtService;
+        private readonly RegisterUserDtoValidator _registerValidator;
+        private readonly LoginUserDtoValidator _loginValidator;
 
         public AuthService(
             IUserRepository userRepository,
@@ -24,10 +28,16 @@ namespace JobManagementAPI.WebAPI.Services.Implementations
             _refreshTokenRepository = refreshTokenRepository;
             _mapper = mapper;
             _jwtService = new JwtService(configuration);
+            _registerValidator = new RegisterUserDtoValidator();
+            _loginValidator = new LoginUserDtoValidator();
         }
 
         public async Task<AuthResponseDto> RegisterAsync(RegisterUserDto registerDto)
         {
+            var validationResult = await _registerValidator.ValidateAsync(registerDto);
+            if (!validationResult.IsValid)
+                throw new ValidationException(validationResult.Errors);
+
             if (!await _userRepository.IsUsernameUniqueAsync(registerDto.Username))
                 throw new Exception("Username is already taken");
 
@@ -58,6 +68,10 @@ namespace JobManagementAPI.WebAPI.Services.Implementations
 
         public async Task<AuthResponseDto> LoginAsync(LoginUserDto loginDto)
         {
+            var validationResult = await _loginValidator.ValidateAsync(loginDto);
+            if (!validationResult.IsValid)
+                throw new ValidationException(validationResult.Errors);
+            
             var user = await _userRepository.GetByUsernameAsync(loginDto.Username);
 
             if (user == null || !user.IsActive)
