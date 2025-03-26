@@ -16,21 +16,6 @@
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
-    <Content Include="Models\Person.cs" />
-    <Content Include=".gitignore" />
-    <Content Include="Models\ApplicationDbContext.cs" />
-    <Content Include="appsettings.Development.json" />
-    <Content Include="appsettings.json" />
-    <Content Include="Program.cs" />
-    <Content Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
-    <Content Include="Migrations\20250225043346_init.Designer.cs" />
-    <Content Include="Migrations\20250225043346_init.cs" />
-    <Content Include="Models\DTOS\GetPersonDto.cs" />
-    <Content Include="Models\DTOS\UpdatePersonDTO.cs" />
-    <Content Include="Models\DTOS\CreatePersonDTO.cs" />
-    <Content Include="Services\PersonService.cs" />
-    <Content Include="Controllers\PeopleController.cs" />
-    <Content Include=".env" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.6.0" />
   </ItemGroup>
 </Project>
