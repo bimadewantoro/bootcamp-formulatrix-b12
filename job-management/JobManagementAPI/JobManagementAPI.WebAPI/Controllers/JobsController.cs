@@ -19,25 +19,14 @@ namespace JobManagementAPI.WebAPI.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin,HR")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> CreateJob([FromBody] CreateJobDto createDto)
         {
-            try
-            {
-                var username = User.FindFirst(ClaimTypes.Name)?.Value;
-                var result = await _jobService.CreateJobAsync(createDto, username);
-                return CreatedAtAction(nameof(GetJobById), new { id = result.Id }, result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+            var username = User.FindFirst(ClaimTypes.Name)?.Value;
+            var result = await _jobService.CreateJobAsync(createDto, username);
+            return CreatedAtAction(nameof(GetJobById), new { id = result.Id }, result);
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<JobDto>>> GetAllJobs([FromQuery] bool activeOnly = false)
         {
             if (activeOnly)
@@ -53,7 +42,6 @@ namespace JobManagementAPI.WebAPI.Controllers
         }
 
         [HttpGet("department/{department}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<JobDto>>> GetJobsByDepartment(string department)
         {
             var jobs = await _jobService.GetJobsByDepartmentAsync(department);
@@ -61,8 +49,6 @@ namespace JobManagementAPI.WebAPI.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<JobDto>> GetJobById(Guid id)
         {
             var result = await _jobService.GetJobByIdAsync(id);
@@ -74,31 +60,17 @@ namespace JobManagementAPI.WebAPI.Controllers
 
         [HttpPut("{id:guid}")]
         [Authorize(Roles = "Admin,HR")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> UpdateJob(Guid id, [FromBody] UpdateJobDto updateDto)
         {
-            try
-            {
-                var result = await _jobService.UpdateJobAsync(id, updateDto);
-                if (!result)
-                    return NotFound();
+            var result = await _jobService.UpdateJobAsync(id, updateDto);
+            if (!result)
+                return NotFound();
 
-                return Ok(new { message = "Job updated successfully" });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+            return Ok(new { message = "Job updated successfully" });
         }
 
         [HttpPatch("{id:guid}/status")]
         [Authorize(Roles = "Admin,HR")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> ToggleJobStatus(Guid id, [FromBody] ToggleJobStatusDto statusDto)
         {
             var result = await _jobService.ToggleJobStatusAsync(id, statusDto.IsActive);
@@ -110,9 +82,6 @@ namespace JobManagementAPI.WebAPI.Controllers
 
         [HttpDelete("{id:guid}")]
         [Authorize(Roles = "Admin,HR")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> DeleteJob(Guid id)
         {
             var result = await _jobService.DeleteJobAsync(id);
