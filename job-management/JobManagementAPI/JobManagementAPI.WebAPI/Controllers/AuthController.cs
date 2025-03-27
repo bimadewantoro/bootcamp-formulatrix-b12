@@ -19,33 +19,61 @@ namespace JobManagementAPI.WebAPI.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterUserDto registerDto)
         {
-            var result = await _authService.RegisterAsync(registerDto);
-            return Created(string.Empty, result);
+            try
+            {
+                var result = await _authService.RegisterAsync(registerDto);
+                return Created(string.Empty, result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginUserDto loginDto)
         {
-            var result = await _authService.LoginAsync(loginDto);
-            return Ok(result);
+            try
+            {
+                var result = await _authService.LoginAsync(loginDto);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         [HttpPost("logout")]
         [Authorize]
         public async Task<IActionResult> Logout([FromBody] LogoutDto logoutDto)
         {
-            var result = await _authService.LogoutAsync(logoutDto.RefreshToken);
-            if (result)
-                return Ok(new { message = "Logged out successfully" });
-            else
-                return BadRequest(new { message = "Invalid token" });
+            try
+            {
+                var result = await _authService.LogoutAsync(logoutDto.RefreshToken);
+                if (result)
+                    return Ok(new { message = "Logged out successfully" });
+                else
+                    return BadRequest(new { message = "Invalid token" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         [HttpPost("refresh")]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenDto refreshTokenDto)
         {
-            var result = await _authService.RefreshTokenAsync(refreshTokenDto.RefreshToken);
-            return Ok(result);
+            try
+            {
+                var result = await _authService.RefreshTokenAsync(refreshTokenDto.RefreshToken);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
     }
 }
