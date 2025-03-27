@@ -19,5 +19,10 @@ namespace JobManagementAPI.WebAPI.Data.Repositories.Implementations
         {
             return await _dbSet.Where(j => j.Department == department && j.IsActive).ToListAsync();
         }
+
+        public async Task<IEnumerable<Job>> GetLatestJobsAsync()
+        {
+            return await _dbSet.OrderByDescending(j => j.CreatedAt).Take(3).ToListAsync();
+        }
     }
 }

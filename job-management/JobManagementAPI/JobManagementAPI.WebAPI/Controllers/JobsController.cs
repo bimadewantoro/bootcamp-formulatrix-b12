@@ -27,17 +27,22 @@ namespace JobManagementAPI.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<JobDto>>> GetAllJobs([FromQuery] bool activeOnly = false)
+        public async Task<ActionResult<IEnumerable<JobDto>>> GetAllJobs([FromQuery] bool activeOnly = false, [FromQuery] bool getLatestJob = false)
         {
-            if (activeOnly)
+            if (getLatestJob)
             {
-                var activeJobs = await _jobService.GetActiveJobsAsync();
-                return Ok(activeJobs);
+            var latestJobs = await _jobService.GetLatestJobsAsync();
+            return Ok(latestJobs);
+            }
+            else if (activeOnly)
+            {
+            var activeJobs = await _jobService.GetActiveJobsAsync();
+            return Ok(activeJobs);
             }
             else
             {
-                var allJobs = await _jobService.GetAllJobsAsync();
-                return Ok(allJobs);
+            var allJobs = await _jobService.GetAllJobsAsync();
+            return Ok(allJobs);
             }
         }
 

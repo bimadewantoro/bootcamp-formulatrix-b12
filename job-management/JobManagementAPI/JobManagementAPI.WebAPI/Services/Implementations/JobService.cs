@@ -16,7 +16,7 @@ namespace JobManagementAPI.WebAPI.Services.Implementations
         private readonly UpdateJobDtoValidator _updateValidator;
 
         public JobService(
-            IJobRepository jobRepository, 
+            IJobRepository jobRepository,
             IMapper mapper,
             CreateJobDtoValidator createValidator,
             UpdateJobDtoValidator updateValidator)
@@ -32,7 +32,7 @@ namespace JobManagementAPI.WebAPI.Services.Implementations
             var validationResult = await _createValidator.ValidateAsync(createDto);
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);
-            
+
             var job = _mapper.Map<Job>(createDto);
             job.Id = Guid.NewGuid();
             job.CreatedAt = DateTime.UtcNow;
@@ -73,7 +73,7 @@ namespace JobManagementAPI.WebAPI.Services.Implementations
             var validationResult = await _updateValidator.ValidateAsync(updateDto);
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);
-            
+
             var job = await _jobRepository.GetByIdAsync(id);
             if (job == null)
                 return false;
@@ -106,6 +106,12 @@ namespace JobManagementAPI.WebAPI.Services.Implementations
 
             _jobRepository.Remove(job);
             return await _jobRepository.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<JobDto>> GetLatestJobsAsync()
+        {
+            var jobs = await _jobRepository.GetLatestJobsAsync();
+            return _mapper.Map<IEnumerable<JobDto>>(jobs);
         }
     }
 }

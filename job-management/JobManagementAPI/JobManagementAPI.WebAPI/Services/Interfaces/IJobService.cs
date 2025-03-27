@@ -12,5 +12,7 @@ namespace JobManagementAPI.WebAPI.Services.Interfaces
         Task<bool> UpdateJobAsync(Guid id, UpdateJobDto updateDto);
         Task<bool> ToggleJobStatusAsync(Guid id, bool isActive);
         Task<bool> DeleteJobAsync(Guid id);
+
+        Task<IEnumerable<JobDto>> GetLatestJobsAsync();
     }
 }

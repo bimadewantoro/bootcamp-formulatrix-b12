@@ -6,5 +6,6 @@ namespace JobManagementAPI.WebAPI.Data.Repositories.Interfaces
     {
         Task<IEnumerable<Job>> GetActiveJobsAsync();
         Task<IEnumerable<Job>> GetJobsByDepartmentAsync(string department);
+        Task<IEnumerable<Job>> GetLatestJobsAsync();
     }
 }
